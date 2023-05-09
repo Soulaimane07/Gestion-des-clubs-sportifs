@@ -1,0 +1,66 @@
+.Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.AnnanceImage {
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.Buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.Buttons button {
+    flex: 0.46;
+}
+
+.modal .Buttons {
+    display: flex;
+    justify-content: center;
+}
+.modal .Buttons .button {
+    flex: 0.4;
+    margin: 0 10px;
+}
+
+.Video {
+    border-radius: 8px;
+}
+
+.TableButtons {
+    display: flex;
+    float: right;
+}
+
+
+
+.DivImage {
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(226, 226, 226);
+
+}
+.DivImage img {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+}
+
+
+
+.cardD {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    align-items:flex-start;
+}
+.cardD span {
+    font-size: 30px;
+    display: flex;
+    align-items:flex-start;
+    margin-right: 10px;
+}
+.cardBtn {
+    margin-top: 20px;
+}
