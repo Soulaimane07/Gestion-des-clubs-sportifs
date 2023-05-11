@@ -6,6 +6,10 @@ use App\http\controllers\AnnanceController;
 use App\http\controllers\TournoieController;
 use App\http\controllers\EtabController;
 use App\http\controllers\UserController;
+
+use App\http\controllers\TournoieAdminController;
+use App\http\controllers\AnnanceAdminController;
+use App\http\controllers\ParticipationsAdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +27,7 @@ use App\http\controllers\UserController;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::middleware(['auth','isAdmin'])->group(function(){
 
@@ -111,4 +113,46 @@ Route::middleware(['auth','isAdmin'])->group(function(){
         return view('Profile/Profile');
     });
 
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/', [App\Http\Controllers\HomeAdminController::class, 'index'])->name('home');
+
+
+    /* **************** Annance **************** */
+
+    Route::get('/annance', function () {
+        return view('Admin/Annonce/Annance');
+    });
+    Route::get('annance', [AnnanceAdminController::class, 'index']);
+
+    Route::get('/annance/{id}', function () {
+        return view('Admin/Annonce/Details');
+    });
+    Route::get('/annance/{id}', [AnnanceAdminController::class,'show']);
+
+
+    /* **************** Tournoie **************** */
+
+    Route::get('/tournoie', function () {
+        return view('Admin/Tournoie/Tournoie');
+    });
+    Route::get('tournoie', [TournoieAdminController::class, 'index']);
+
+    Route::get('/tournoie/{id}', function () {
+        return view('Admin/Tournoie/Details');
+    });
+    
+    Route::get('/tournoie/{id}', [TournoieAdminController::class,'show']);
+
+    Route::post('/participation', [ParticipationsAdminController::class,'store']);
+
+    Route::delete('/participation/{id}', [ParticipationsAdminController::class,'destroy']);
+
+
+    /* **************** Profile **************** */
+
+    Route::get('/profile', function () {
+        return view('Admin/Profile/Profile');
+    });
 });
