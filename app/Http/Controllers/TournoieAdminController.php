@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tournoie;
+use App\Models\Player;
 use App\Models\Participations;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,43 @@ class TournoieAdminController extends Controller
     {
         $tournoies = Tournoie::all();
         return view('Admin/Tournoie/Tournoie', compact('tournoies') );
+    }
+
+    public function storeP(Request $request)
+    {
+        // $request->validate([
+        //     'title' => ['required', 'string', 'max:100'],
+        //     'desc' => ['required', 'string', 'max:1200'],
+        //     'dateDebut' => ['required', 'string',],
+        // ]);
+
+        $player = new Player;
+        $player->CNI = $request->input('CNI');
+        $player->CNE = $request->input('CNE');
+        $player->fname = $request->input('fname');
+        $player->lname = $request->input('lname');
+        $player->etab = $request->input('etab');
+        $player->filier = $request->input('filier');
+        $player->tournoie = $request->input('tournoie');
+
+        if($request->file('CNIImage')){
+            $name = $request->file('CNIImage')->getClientOriginalName();
+            $request->file('CNIImage')->storeAs('public/images/players/cin', $name);
+            $player->CNIImage = $name;
+        }
+        if($request->file('attestation')){
+            $name = $request->file('attestation')->getClientOriginalName();
+            $request->file('attestation')->storeAs('public/images/players/attestation', $name);
+            $player->attestation = $name;
+        }
+        if($request->file('image')){
+            $name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/images/players/image', $name);
+            $player->image = $name;
+        }
+
+        $player->save();
+        return Redirect('/tournoie');
     }
 
     /**
@@ -41,8 +79,8 @@ class TournoieAdminController extends Controller
     public function show(string $id)
     {
 
-        // ;
         $tournoie = Tournoie::find($id);
+        $players = Player::where('etab', Auth::user()->etab)->get();
 
         if (Participations::where('tournoie', $id)->where('etab', Auth::user()->etab)->exists()) {
             $participation = true;
@@ -50,7 +88,7 @@ class TournoieAdminController extends Controller
             $participation = false;
         }
 
-        return view('Admin/Tournoie/Details',['tournoie'=>$tournoie, "isParticipated"=>$participation]);
+        return view('Admin/Tournoie/Details',['tournoie'=>$tournoie, 'players'=>$players, "isParticipated"=>$participation]);
     }
 
     /**
