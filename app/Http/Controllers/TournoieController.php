@@ -18,7 +18,7 @@ class TournoieController extends Controller
         $tournoies = Tournoie::all();
         $participations = Participations::all();
 
-        return view('Tournoie/Tournoie', compact('tournoies', 'participations') );
+        return view('SAdmin/Tournoie/Tournoie', compact('tournoies', 'participations') );
     }
 
     /**
@@ -63,7 +63,7 @@ class TournoieController extends Controller
         $tournoie = Tournoie::find($id);
         $participations = Participations::where('tournoie', $id)->get();
 
-        return view('Tournoie/Details',['tournoie'=>$tournoie, 'participations'=>$participations]);
+        return view('SAdmin/Tournoie/Details',['tournoie'=>$tournoie, 'participations'=>$participations]);
     }
     
     public function participation(string $tournoieId, string $etabid)
@@ -72,7 +72,15 @@ class TournoieController extends Controller
         $etab = Etab::where('bref', $etabid)->get();
         $players = Player::where('tournoie', $tournoieId)->where('etab', $etabid)->get();
 
-        return view('Tournoie/Participation', ['tournoie'=>$tournoie, 'etab'=>$etab, 'players'=>$players]);
+        return view('SAdmin/Tournoie/Participation', ['tournoie'=>$tournoie, 'etab'=>$etab, 'players'=>$players]);
+    }
+    
+    
+    public function deleteParticipation(string $tournoieId, string $etabid)
+    {
+        Participations::where('tournoie', $tournoieId)->where('etab', $etabid)->delete();
+        Player::where('tournoie', $tournoieId)->where('etab', $etabid)->delete();
+        return redirect(url('/admin/tournoie/'.$tournoieId));
     }
 
     /**

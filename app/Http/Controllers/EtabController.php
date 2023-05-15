@@ -15,7 +15,7 @@ class EtabController extends Controller
     public function index()
     {
         $etabs = Etab::all();
-        return view('Etabs/Etabs', compact('etabs') );
+        return view('SAdmin/Etabs/Etabs', compact('etabs') );
     }
 
     /**
@@ -56,7 +56,7 @@ class EtabController extends Controller
     public function show(string $id)
     {
         $etab = Etab::find($id);
-        return view('Etabs/Details',['etab'=>$etab]);
+        return view('SAdmin/Etabs/Details',['etab'=>$etab]);
     }
 
     /**

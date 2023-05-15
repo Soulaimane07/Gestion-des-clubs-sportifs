@@ -110,8 +110,10 @@ class TournoieAdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroyParticipation(string $tournoieId)
     {
-        //
+        Participations::where('tournoie', $tournoieId)->where('etab', Auth::user()->etab)->delete();
+        Player::where('tournoie', $tournoieId)->where('etab', Auth::user()->etab)->delete();
+        return redirect(url('/tournoie/'.$tournoieId));
     }
 }

@@ -57,8 +57,9 @@ Route::middleware(['auth', 'notAdmin'])->group(function(){
     });
     Route::get('/tournoie/{id}', [TournoieAdminController::class,'show']);
     Route::post('/participation', [ParticipationsAdminController::class,'store']);
-    Route::delete('/participation/{id}', [ParticipationsAdminController::class,'destroy']);
     Route::post('/tournoie/Cplayer', [TournoieAdminController::class,'storeP']);
+    Route::delete('/cancel/tournoie/{tournoieId}', [TournoieAdminController::class,'destroyParticipation']);
+
 
     Route::get('/playersCard/tournoie/{tournoieId}/etab/{etabId}', [PdfController::class, 'PlayersCardsPDF']);
     Route::get('/playersTable/tournoie/{tournoieId}/etab/{etabId}', [PdfController::class, 'PlayerstablePDF']);
@@ -80,17 +81,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     /* **************** Annance **************** */
 
     Route::get('/annance', function () {
-        return view('Annonce/Annance');
+        return view('SAdmin/Annonce/Annance');
     });
     Route::get('/annance', [AnnanceController::class, 'index']);
 
     Route::get('/annance/create', function () {
-        return view('Annonce/Create');
+        return view('SAdmin/Annonce/Create');
     });
     Route::post('/annance/create', [AnnanceController::class,'store']);
     
     Route::get('/annance/{id}', function () {
-        return view('Annonce/Details');
+        return view('SAdmin/Annonce/Details');
     });
     Route::get('/annance/{id}', [AnnanceController::class,'show']);
     Route::delete('/annance/{id}', [AnnanceController::class,'destroy']);
@@ -100,24 +101,25 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     /* **************** Tournoie **************** */
 
     Route::get('/tournoie', function () {
-        return view('Tournoie/Tournoie');
+        return view('SAdmin/Tournoie/Tournoie');
     });
     Route::get('/tournoie', [TournoieController::class, 'index']);
     Route::get('/tournoie/create', function () {
-        return view('Tournoie/Create');
+        return view('SAdmin/Tournoie/Create');
     });
     Route::post('/tournoie/create', [TournoieController::class,'store']);
     Route::get('/tournoie/{id}', function () {
-        return view('Tournoie/Details');
+        return view('SAdmin/Tournoie/Details');
     });
     Route::get('/tournoie/{id}', [TournoieController::class,'show']);
     Route::delete('/tournoie/{id}', [TournoieController::class,'destroy']);
     Route::post('/tournoie/{id}', [TournoieController::class,'update']);
     
     Route::get('/tournoie/{tournoieId}/etablissement/{etabid}', function () {
-        return view('Tournoie/Participation');
+        return view('SAdmin/Tournoie/Participation');
     });
     Route::get('/tournoie/{tournoieId}/etablissement/{etabid}', [TournoieController::class, 'participation']);
+    Route::delete('/cancel/tournoie/{tournoieId}/etab/{etabid}', [TournoieController::class, 'deleteParticipation']);
     
     Route::get('/playersCard/tournoie/{tournoieId}/etab/{etabId}', [PdfController::class, 'PlayersCardsPDF']);
     Route::get('/playersTable/tournoie/{tournoieId}/etab/{etabId}', [PdfController::class, 'PlayerstablePDF']);
@@ -127,16 +129,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     /* **************** Etabs **************** */
 
     Route::get('/etablissements', function () {
-        return view('Etabs/Etabs');
+        return view('SAdmin/Etabs/Etabs');
     });
     Route::get('/etablissements', [EtabController::class, 'index']);
     Route::get('/etablissements/create', function () {
-        return view('Etabs/Create');
+        return view('SAdmin/Etabs/Create');
     });
     Route::post('/etablissements/create', [EtabController::class,'store']);
     Route::delete('/etablissements/{id}', [EtabController::class,'destroy']);
     Route::get('/etablissements/{id}', function () {
-        return view('Etabs/Details');
+        return view('SAdmin/Etabs/Details');
     });
     Route::get('/etablissements/{id}', [EtabController::class,'show']);
     Route::post('/etablissements/{id}', [EtabController::class,'update']);
@@ -145,17 +147,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     /* **************** Users **************** */
 
     Route::get('/users', function () {
-        return view('Users/Users');
+        return view('SAdmin/Users/Users');
     });
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/create', function () {
-        return view('Users/Create');
+        return view('SAdmin/Users/Create');
     });
     Route::get('/users/create', [UserController::class, 'Cetabs']);
     Route::post('/users/create', [UserController::class,'store']);
     
     Route::get('/users/{id}', function () {
-        return view('Users/Details');
+        return view('SAdmin/Users/Details');
     });
     Route::get('/users/{id}', [UserController::class,'show']);
     Route::post('/users/{id}', [UserController::class,'update']);
@@ -165,15 +167,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     /* **************** Profile **************** */
     
     Route::get('/sports', function () {
-        return view('Sports/Sports');
+        return view('SAdmin/Sports/Sports');
     });
     Route::get('/sports', [SportController::class, 'index']);
     Route::get('/sports/create', function () {
-        return view('Sports/Create');
+        return view('SAdmin/Sports/Create');
     });
     Route::post('/sports/create', [SportController::class,'store']);
     Route::get('/sports/{id}', function () {
-        return view('Sports/Details');
+        return view('SAdmin/Sports/Details');
     });
     Route::get('/sports/{id}', [SportController::class,'show']);
 
@@ -182,7 +184,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     /* **************** Profile **************** */
 
     Route::get('/profile', function () {
-        return view('Profile/Profile');
+        return view('SAdmin/Profile/Profile');
     });
 
 });

@@ -13,7 +13,7 @@ class AnnanceController extends Controller
     public function index()
     {
         $annances = Annance::all();
-        return view('Annonce/Annance', compact('annances') );
+        return view('SAdmin/Annonce/Annance', compact('annances') );
     }
 
     /**
@@ -64,7 +64,7 @@ class AnnanceController extends Controller
     public function show(string $id)
     {
         $annance = Annance::find($id);
-        return view('Annonce/Details',['annance'=>$annance]);
+        return view('SAdmin/Annonce/Details',['annance'=>$annance]);
     }
 
     /**

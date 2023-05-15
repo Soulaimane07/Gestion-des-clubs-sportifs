@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('Users/Users', compact('users') );
+        return view('SAdmin/Users/Users', compact('users') );
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
     public function Cetabs()
     {
         $etabs = Etab::all();
-        return view('Users/Create', compact('etabs') );
+        return view('SAdmin/Users/Create', compact('etabs') );
     }
     
     public function create()
@@ -66,7 +66,7 @@ class UserController extends Controller
         $user = User::find($id);
         $etabs = Etab::all();
 
-        return view('Users/Details',['user'=>$user, 'etabs'=>$etabs]);
+        return view('SAdmin/Users/Details',['user'=>$user, 'etabs'=>$etabs]);
     }
 
     /**

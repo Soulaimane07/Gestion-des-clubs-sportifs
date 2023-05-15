@@ -29,6 +29,6 @@ class HomeController extends Controller
         $etabs = Etab::all();
         $tournoies = Tournoie::all();
         $annances = Annance::all();
-        return view('index',['etabs'=>$etabs, 'tournoies'=>$tournoies, 'annances'=>$annances]);
+        return view('SAdmin/index',['etabs'=>$etabs, 'tournoies'=>$tournoies, 'annances'=>$annances]);
     }
 }

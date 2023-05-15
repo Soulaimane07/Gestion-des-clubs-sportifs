@@ -13,7 +13,7 @@ class SportController extends Controller
     public function index()
     {
         $sports = Sport::all();
-        return view('Sports/Sports', compact('sports') );
+        return view('SAdmin/Sports/Sports', compact('sports') );
     }
 
     /**
@@ -46,7 +46,7 @@ class SportController extends Controller
     public function show(string $id)
     {
         $sport = Sport::find($id);
-        return view('Sports/Details',['sport'=>$sport]);
+        return view('SAdmin/Sports/Details',['sport'=>$sport]);
     }
 
     /**
