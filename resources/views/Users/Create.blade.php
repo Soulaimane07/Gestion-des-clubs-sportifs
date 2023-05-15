@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-12 col-sm-6 mx-auto">
-        <form method="POST" action="/users/create">
+        <form method="POST" action="/admin/users/create">
             @csrf
             <div class="mb-3">
                 <label for="etab" class="form-label"> Etablissement </label>

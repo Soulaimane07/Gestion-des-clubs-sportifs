@@ -55,7 +55,7 @@ class UserController extends Controller
         $user->password = Hash::make($request['password']);
 
         $user->save();
-        return Redirect('/users');
+        return Redirect('/admin/users');
     }
 
     /**
@@ -95,7 +95,7 @@ class UserController extends Controller
         }
         
         $result= $user->save();
-        return redirect('/users');
+        return redirect('/admin/users');
     }
 
     /**
@@ -104,6 +104,6 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::find($id)->delete();
-        return redirect('/users');
+        return redirect('/admin/users');
     }
 }

@@ -10,7 +10,7 @@
         </div>
 
         <div class="col-12 col-sm-6 mx-auto">
-            <form method="POST" action="/annance/create" enctype="multipart/form-data">
+            <form method="POST" action="/admin/annance/create" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="formFileMultiple" class="form-label">Image</label>

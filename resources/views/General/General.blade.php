@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Modernize Free</title>
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
-  <link rel="stylesheet" href="../assets/css/styles.min.css" />
-  <link rel="stylesheet" href="../assets/css/Css.css">
+  <link rel="shortcut icon" type="image/png" href="{{ URL::asset('assets/images/logos/favicon.png') }}" />
+  <link rel="stylesheet" href="{{ URL::asset('/assets/css/styles.min.css') }}" />
+  <link rel="stylesheet" href="{{ URL::asset('/assets/css/Css.css') }}">
 </head>
 
 <body>
@@ -19,8 +19,8 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="/" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+          <a href="/admin" class="text-nowrap logo-img">
+            <img src="{{ URL::asset('/assets/images/logos/dark-logo.svg') }}" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -34,7 +34,7 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/" aria-expanded="false">
+              <a class="sidebar-link" href="/admin" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
@@ -46,7 +46,7 @@
               <span class="hide-menu">UI COMPONENTS</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/annance" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/annance" aria-expanded="false">
                 <span>
                   <i class="ti ti-article"></i>
                 </span>
@@ -54,7 +54,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/tournoie" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/tournoie" aria-expanded="false">
                 <span>
                   <i class="ti ti-ball-volleyball"></i>
                 </span>
@@ -62,7 +62,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/sports" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/sports" aria-expanded="false">
                 <span>
                   <i class="ti ti-ball-volleyball"></i>
                 </span>
@@ -74,7 +74,7 @@
               <span class="hide-menu">AUTH</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/etablissements" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/etablissements" aria-expanded="false">
                 <span>
                   <i class="ti ti-building-bank"></i>
                 </span>
@@ -82,7 +82,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/users" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/users" aria-expanded="false">
                 <span>
                   <i class="ti ti-users"></i>
                 </span>
@@ -90,7 +90,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="/profile" aria-expanded="false">
+              <a class="sidebar-link" href="/admin/profile" aria-expanded="false">
                 <span>
                   <i class="ti ti-user"></i>
                 </span>
@@ -126,16 +126,15 @@
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                  <img src="{{ URL::asset('/assets/images/profile/user-1.jpg') }}" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
+                    <a href="/admin/profile" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3"> {{ Auth::user()->lname }} {{ Auth::user()->fname }}  </p>
                     </a>
-                    {{-- <a href="/login" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a> --}}
                     <a class="btn btn-outline-primary mx-3 mt-2 d-block" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <p class="mb-0 fs-3"> {{ __('Logout') }} </p>
                     </a>
@@ -159,13 +158,14 @@
     </div>
   </div>
 
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/sidebarmenu.js"></script>
-  <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-  <script src="../assets/js/dashboard.js"></script>
+  {{ URL::asset('/assets/images/profile/user-1.jpg') }}
+  <script src="{{URL::asset('/assets/libs/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{URL::asset('/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{URL::asset('/assets/js/sidebarmenu.js')}}"></script>
+  <script src="{{URL::asset('/assets/js/app.min.js')}}"></script>
+  <script src="{{URL::asset('/assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
+  <script src="{{URL::asset('/assets/libs/simplebar/dist/simplebar.js')}}"></script>
+  <script src="{{URL::asset('/assets/js/dashboard.js')}}"></script>
 </body>
 
 </html>

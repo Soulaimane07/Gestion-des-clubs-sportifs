@@ -5,12 +5,12 @@
     <div class="container-fluid">
         <div class="card">
         <div class="card-body Header">
-            <h1 class="card-title fw-semibold">Create Tournoue</h1>
+            <h1 class="card-title fw-semibold">Create Tournoie</h1>
         </div>
     </div>
 
     <div class="col-12 col-sm-6 mx-auto">
-    <form method="POST" action="/tournoie/create"  enctype="multipart/form-data">
+    <form method="POST" action="/admin/tournoie/create"  enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="formFileMultiple" class="form-label">Image</label>

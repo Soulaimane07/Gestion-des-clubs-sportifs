@@ -27,6 +27,42 @@
                 <button type="button" class="btn btn-danger p-3" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete</button>
             </div>
         </div>
+
+        <div class="mt-9">
+            <div class="card">
+                <div class="card-body Header">
+                    <h2 class="fw-semibold"> Participations ( {{$participations->count()}} ) </h2>
+                </div>
+                @if($participations->count() !== 0)
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Etablissement</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($participations as $key => $participation)
+                            <tr>
+                                <th scope="row">{{++$key}}</th>
+                                <td>{{$participation['etab']}}</td>
+                                <td class="TableButtons">
+                                    <a href="/admin/tournoie/{{$tournoie['id']}}/etablissement/{{$participation['etab']}}"type="button" class="btn btn-success mx-2" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+                                            <path d="M13.5 6.5l4 4"></path>
+                                         </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -43,7 +79,7 @@
                 <br>
                 <div class="Buttons">
                     <button data-bs-toggle="modal" data-bs-target="#deleteModal" type="button" class="button btn btn-success">Non, Cancel</button>
-                    <form class="button" action="{{url('/tournoie/'.$tournoie['id'])}}" method="post">
+                    <form class="button" action="{{url('/admin/tournoie/'.$tournoie['id'])}}" method="post">
                         {{method_field('DELETE')}}
                         {{csrf_field()}}
                         <button id="delete" class="w-100 btn btn-danger"> Oui, I'm sure </button> 
@@ -62,7 +98,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/tournoie/{{$tournoie['id']}}" enctype="multipart/form-data">
+                <form method="POST" action="/admin/tournoie/{{$tournoie['id']}}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="image" class="form-label"> Image </label>

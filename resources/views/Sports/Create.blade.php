@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-12 col-sm-6 mx-auto">
-        <form method="POST" action="/sports/create">
+        <form method="POST" action="/admin/sports/create">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label"> Title </label>

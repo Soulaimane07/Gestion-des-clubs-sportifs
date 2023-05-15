@@ -47,7 +47,7 @@ class EtabController extends Controller
         }
 
         $etab->save();
-        return Redirect('/etablissements');
+        return Redirect('/admin/etablissements');
     }
 
     /**
@@ -83,7 +83,7 @@ class EtabController extends Controller
         }
 
         $result= $etab->save();
-        return redirect('/etablissements');
+        return redirect('/admin/etablissements');
     }
 
     /**
@@ -92,6 +92,6 @@ class EtabController extends Controller
     public function destroy(string $id)
     {
         Etab::find($id)->delete();
-        return redirect('/etablissements');
+        return redirect('/admin/etablissements');
     }
 }

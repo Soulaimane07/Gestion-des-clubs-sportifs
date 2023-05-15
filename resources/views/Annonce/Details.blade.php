@@ -43,7 +43,7 @@
               <br>
               <div class="Buttons">
                   <button data-bs-toggle="modal" data-bs-target="#deleteModal" type="button" class="button btn btn-success">Non, Cancel</button>
-                  <form class="button" action="{{url('/annance/'.$annance['id'])}}" method="post">
+                  <form class="button" action="{{url('/admin/annance/'.$annance['id'])}}" method="post">
                       {{method_field('DELETE')}}
                       {{csrf_field()}}
                       <button id="delete" class="w-100 btn btn-danger"> Oui, I'm sure </button> 
@@ -62,7 +62,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <form method="POST" action="/annance/{{$annance['id']}}" enctype="multipart/form-data">
+              <form method="POST" action="/admin/annance/{{$annance['id']}}" enctype="multipart/form-data">
                   @csrf
                   <div class="mb-3">
                     <label for="image" class="form-label"> Image </label>

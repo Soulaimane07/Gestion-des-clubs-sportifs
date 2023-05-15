@@ -12,7 +12,7 @@
                 </span>
                 <h4 class=""> {{$annances->count()}} Annances </h4>
               </div>
-              <a href="/annance" class="btn btn-primary cardBtn">See more...</a>
+              <a href="/admin/annance" class="btn btn-primary cardBtn">See more...</a>
             </div>
           </div>
         </div>
@@ -25,7 +25,7 @@
                 </span>
                 <h4 class=""> {{$tournoies->count()}} Tournoies </h4>
               </div>
-              <a href="/tournoie" class="btn btn-primary cardBtn">See more...</a>
+              <a href="/admin/tournoie" class="btn btn-primary cardBtn">See more...</a>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
                 </span>
                 <h4 class=""> {{$etabs->count()}} Etablissements </h4>
               </div>
-                <a href="/etablissements" class="btn btn-primary cardBtn">See more...</a>
+                <a href="/admin/etablissements" class="btn btn-primary cardBtn">See more...</a>
             </div>
           </div>
         </div>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tournoie;
+use App\Models\Participations;
+use App\Models\Player;
+use App\Models\Etab;
 use Illuminate\Http\Request;
 
 class TournoieController extends Controller
@@ -13,7 +16,9 @@ class TournoieController extends Controller
     public function index()
     {
         $tournoies = Tournoie::all();
-        return view('Tournoie/Tournoie', compact('tournoies') );
+        $participations = Participations::all();
+
+        return view('Tournoie/Tournoie', compact('tournoies', 'participations') );
     }
 
     /**
@@ -47,7 +52,7 @@ class TournoieController extends Controller
         $tournoie->image = $name;
 
         $tournoie->save();
-        return Redirect('/tournoie');
+        return Redirect('/admin/tournoie');
     }
 
     /**
@@ -56,7 +61,18 @@ class TournoieController extends Controller
     public function show(string $id)
     {
         $tournoie = Tournoie::find($id);
-        return view('Tournoie/Details',['tournoie'=>$tournoie]);
+        $participations = Participations::where('tournoie', $id)->get();
+
+        return view('Tournoie/Details',['tournoie'=>$tournoie, 'participations'=>$participations]);
+    }
+    
+    public function participation(string $tournoieId, string $etabid)
+    {
+        $tournoie = Tournoie::find($tournoieId);
+        $etab = Etab::where('bref', $etabid)->get();
+        $players = Player::where('tournoie', $tournoieId)->where('etab', $etabid)->get();
+
+        return view('Tournoie/Participation', ['tournoie'=>$tournoie, 'etab'=>$etab, 'players'=>$players]);
     }
 
     /**
@@ -87,7 +103,7 @@ class TournoieController extends Controller
 
         $result= $tournoie->save();
 
-        return redirect('/tournoie');
+        return redirect('/admin/tournoie');
     }
 
     /**
@@ -96,6 +112,6 @@ class TournoieController extends Controller
     public function destroy(string $id)
     {
         Tournoie::find($id)->delete();
-        return redirect('/tournoie');
+        return redirect('/admin/tournoie');
     }
 }

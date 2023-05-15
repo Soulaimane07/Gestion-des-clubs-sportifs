@@ -54,7 +54,7 @@ class AnnanceController extends Controller
         }
         
         $annance->save();
-        return Redirect('/annance');
+        return Redirect('/admin/annance');
     }
 
 
@@ -98,7 +98,7 @@ class AnnanceController extends Controller
 
         $result= $annance->save();
 
-        return redirect('/annance');
+        return redirect('/admin/annance');
     }
 
     /**
@@ -107,6 +107,6 @@ class AnnanceController extends Controller
     public function destroy(string $id)
     {
         Annance::find($id)->delete();
-        return redirect('/annance');
+        return redirect('/admin/annance');
     }
 }

@@ -36,7 +36,7 @@
                 <br>
                 <div class="Buttons">
                     <button data-bs-toggle="modal" data-bs-target="#deleteModal" type="button" class="button btn btn-success">Non, Cancel</button>
-                    <form class="button" action="{{url('/etablissements/'.$etab['id'])}}" method="post">
+                    <form class="button" action="{{url('/admin/etablissements/'.$etab['id'])}}" method="post">
                         {{method_field('DELETE')}}
                         {{csrf_field()}}
                         <button id="delete" class="w-100 btn btn-danger"> Oui, I'm sure </button> 
@@ -46,6 +46,7 @@
           </div>
         </div>
     </div>
+    
     <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -54,7 +55,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/etablissements/{{$etab['id']}}" enctype="multipart/form-data">
+                <form method="POST" action="/admin/etablissements/{{$etab['id']}}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                       <label for="image" class="form-label"> Image </label>

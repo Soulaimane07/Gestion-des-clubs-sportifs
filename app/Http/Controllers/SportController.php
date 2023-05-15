@@ -37,7 +37,7 @@ class SportController extends Controller
         $sport->title = $request->input('title');
 
         $sport->save();
-        return Redirect('/sports');
+        return Redirect('/admin/sports');
     }
 
     /**

@@ -10,12 +10,13 @@
 </head>
 <body>
     <div style="text-align: center; margin-top: 20px">
-        <img src="{{ storage_path('app/public/images/etabs/'.Auth::user()->image)}}" width="30%">
+        <img src="{{ storage_path('app/public/images/cadi.jpg')}}" width="30%">
     </div>
 
     <div class="container" style="margin-top: 30px">
     <h1 style="text-align: center; margin-bottom: 20px">{{$tournoie[0]->title}}</h1>
 
+    <h3 style="margin-bottom: 20px">{{$etab[0]->etab}}</h3>
     <table class="table">
         <thead>
           <tr>

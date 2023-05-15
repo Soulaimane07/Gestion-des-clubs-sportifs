@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-body Header">
           <h2 class="fw-semibold">Tournoies ( {{$tournoies->count()}} ) </h2>
-          <a href="/tournoie/create" type="button" class="btn btn-primary m-1">Create Tournoie</a>
+          <a href="/admin/tournoie/create" type="button" class="btn btn-primary m-1">Create Tournoie</a>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
         @foreach ($tournoies as $tournoie)
             <div class="col-md-5 col-lg-4">
                 <div class="card mx-auto" style="width: 18rem;">
-                    <a href="/tournoie/{{$tournoie['id']}}">
+                    <a href="/admin/tournoie/{{$tournoie['id']}}">
                       <img src="{{asset('storage/images/tournoies/'. $tournoie->image)}}" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
@@ -24,8 +24,11 @@
                         <span> -> </span>
                         <h6 class="text-danger"> {{$tournoie['dateFin']}} </h6> 
                       </div>
-                      <p class="card-text">{{Str::limit($tournoie['desc'], 100);}}</p>
-                      <a href="/tournoie/{{$tournoie['id']}}" class="btn btn-primary">See more...</a>
+                      <p class="card-text">
+                        {{Str::limit($tournoie['desc'], 100);}}
+                        <p> {{$participations->where('tournoie', $tournoie['id'])->count()}} Etablissements Participated </p>
+                      </p>
+                      <a href="/admin/tournoie/{{$tournoie['id']}}" class="btn btn-primary">See more...</a>
                     </div>
                 </div>
             </div>

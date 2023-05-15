@@ -43,16 +43,18 @@
                     <h4 class="fw-semibold"> les joueures </h4>
                     <div>
                         @if($players)
-                            <a href="/playersTable/{{$tournoie['id']}}"type="button" class="btn btn-success mx-2">
+                            <a href="/playersTable/tournoie/{{$tournoie['id']}}/etab/{{Auth::user()->etab}}" type="button" class="btn btn-success mx-2">
                                 Imprimer le tableau
                             </a>
-                            <a href="/playersCard/{{$tournoie['id']}}"type="button" class="btn btn-success mx-2">
+                            <a href="/playersCard/tournoie/{{$tournoie['id']}}/etab/{{Auth::user()->etab}}" type="button" class="btn btn-success mx-2">
                                 Imprimer les cartes
                             </a>
                         @endif
+                        @if($players->count() !== 10)
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Create Joueure
                         </button>
+                        @endif
                     </div>
                 </div>
 
@@ -69,9 +71,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($players as $player)
+                            @foreach ($players as $key => $player)
                                 <tr>
-                                    <th scope="row">{{$player['id']}}</th>
+                                    <th scope="row">{{++$key}}</th>
                                     <td>{{$player['CNI']}}</td>
                                     <td>{{$player['CNE']}}</td>
                                     <td>{{$player['lname']}} {{$player['fname']}}</td>
