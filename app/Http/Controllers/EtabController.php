@@ -83,7 +83,7 @@ class EtabController extends Controller
         }
 
         $result= $etab->save();
-        return redirect('/admin/etablissements');
+        return redirect()->back();
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\Tournoie;
 use App\Models\Participations;
 use App\Models\Player;
 use App\Models\Etab;
+use App\Models\Sport;
 use Illuminate\Http\Request;
 
 class TournoieController extends Controller
@@ -26,7 +27,8 @@ class TournoieController extends Controller
      */
     public function create()
     {
-        //
+        $sports = Sport::all();
+        return view('SAdmin/Tournoie/Create', compact('sports') ); 
     }
 
     /**
@@ -64,6 +66,15 @@ class TournoieController extends Controller
         $participations = Participations::where('tournoie', $id)->get();
 
         return view('SAdmin/Tournoie/Details',['tournoie'=>$tournoie, 'participations'=>$participations]);
+    }
+
+    public function player(string $tournoiId, string $playerId)
+    {
+        $tournoie = Tournoie::find($tournoiId);
+        $player = Player::find($playerId);
+        // $players = Player::where('etab', Auth::user()->etab)->where('tournoie', $id)->get();
+
+        return view('SAdmin/Tournoie/Player',['tournoie'=>$tournoie, 'player'=>$player]);
     }
     
     public function participation(string $tournoieId, string $etabid)
@@ -111,7 +122,7 @@ class TournoieController extends Controller
 
         $result= $tournoie->save();
 
-        return redirect('/admin/tournoie');
+        return redirect()->back();
     }
 
     /**
@@ -120,6 +131,9 @@ class TournoieController extends Controller
     public function destroy(string $id)
     {
         Tournoie::find($id)->delete();
+        Participations::where('tournoie', $id)->delete();
+        Player::where('tournoie', $id)->delete();
+
         return redirect('/admin/tournoie');
     }
 }

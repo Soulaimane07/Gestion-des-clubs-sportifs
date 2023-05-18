@@ -12,6 +12,8 @@ use App\http\controllers\AnnanceAdminController;
 use App\http\controllers\ParticipationsAdminController;
 use App\http\controllers\SportController;
 use App\http\controllers\PlayerController;
+use App\http\controllers\ProfileController;
+use App\http\controllers\ProfileAdminController;
 
 use App\Http\Controllers\PDFController;
 /*
@@ -59,6 +61,12 @@ Route::middleware(['auth', 'notAdmin'])->group(function(){
     Route::post('/participation', [ParticipationsAdminController::class,'store']);
     Route::post('/tournoie/Cplayer', [TournoieAdminController::class,'storeP']);
     Route::delete('/cancel/tournoie/{tournoieId}', [TournoieAdminController::class,'destroyParticipation']);
+    
+    Route::get('/tournoie/{tournoiId}/player/{playerId}', function () {
+        return view('Admin/Tournoie/Player');
+    });
+    Route::get('/tournoie/{tournoiId}/player/{playerId}', [TournoieAdminController::class,'player']);
+    
 
 
     Route::get('/playersCard/tournoie/{tournoieId}/etab/{etabId}', [PdfController::class, 'PlayersCardsPDF']);
@@ -107,6 +115,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/tournoie/create', function () {
         return view('SAdmin/Tournoie/Create');
     });
+    Route::get('/tournoie/create', [TournoieController::class,'create']);
     Route::post('/tournoie/create', [TournoieController::class,'store']);
     Route::get('/tournoie/{id}', function () {
         return view('SAdmin/Tournoie/Details');
@@ -120,6 +129,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     });
     Route::get('/tournoie/{tournoieId}/etablissement/{etabid}', [TournoieController::class, 'participation']);
     Route::delete('/cancel/tournoie/{tournoieId}/etab/{etabid}', [TournoieController::class, 'deleteParticipation']);
+
+    Route::get('/tournoie/{tournoiId}/player/{playerId}', function () {
+        return view('SAdmin/Tournoie/Player');
+    });
+    Route::get('/tournoie/{tournoiId}/player/{playerId}', [TournoieController::class,'player']);
+
+
     
     Route::get('/playersCard/tournoie/{tournoieId}/etab/{etabId}', [PdfController::class, 'PlayersCardsPDF']);
     Route::get('/playersTable/tournoie/{tournoieId}/etab/{etabId}', [PdfController::class, 'PlayerstablePDF']);
@@ -164,7 +180,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::delete('/users/{id}', [UserController::class,'destroy']);
     
     
-    /* **************** Profile **************** */
+    /* **************** Sports **************** */
     
     Route::get('/sports', function () {
         return view('SAdmin/Sports/Sports');
@@ -186,5 +202,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/profile', function () {
         return view('SAdmin/Profile/Profile');
     });
+    Route::post('/profile/', [ProfileController::class,'update']);
+
 
 });

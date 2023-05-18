@@ -54,7 +54,7 @@ class TournoieAdminController extends Controller
         }
 
         $player->save();
-        return Redirect('/tournoie');
+        return Redirect()->back();
     }
 
     /**
@@ -80,7 +80,7 @@ class TournoieAdminController extends Controller
     {
 
         $tournoie = Tournoie::find($id);
-        $players = Player::where('etab', Auth::user()->etab)->get();
+        $players = Player::where('etab', Auth::user()->etab)->where('tournoie', $id)->get();
 
         if (Participations::where('tournoie', $id)->where('etab', Auth::user()->etab)->exists()) {
             $participation = true;
@@ -89,6 +89,15 @@ class TournoieAdminController extends Controller
         }
 
         return view('Admin/Tournoie/Details',['tournoie'=>$tournoie, 'players'=>$players, "isParticipated"=>$participation]);
+    }
+    
+    public function player(string $tournoiId, string $playerId)
+    {
+        $tournoie = Tournoie::find($tournoiId);
+        $player = Player::find($playerId);
+        // $players = Player::where('etab', Auth::user()->etab)->where('tournoie', $id)->get();
+
+        return view('Admin/Tournoie/Player',['tournoie'=>$tournoie, 'player'=>$player]);
     }
 
     /**

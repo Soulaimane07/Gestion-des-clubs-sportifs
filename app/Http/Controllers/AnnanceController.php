@@ -98,7 +98,7 @@ class AnnanceController extends Controller
 
         $result= $annance->save();
 
-        return redirect('/admin/annance');
+        return redirect()->back();
     }
 
     /**

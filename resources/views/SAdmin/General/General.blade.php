@@ -158,7 +158,6 @@
     </div>
   </div>
 
-  {{ URL::asset('/assets/images/profile/user-1.jpg') }}
   <script src="{{URL::asset('/assets/libs/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{URL::asset('/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{URL::asset('/assets/js/sidebarmenu.js')}}"></script>

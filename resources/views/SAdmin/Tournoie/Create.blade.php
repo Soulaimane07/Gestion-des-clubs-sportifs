@@ -21,6 +21,15 @@
             <label for="title" class="form-label">Titre</label>
             <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
         </div>
+        <div class="w-sm mb-3">
+            <label for="title" class="form-label">Sport</label>
+            <select name="etab" class="form-select" aria-label="Default select example">
+                <option value="" selected>Open this select menu</option>
+                @foreach ($sports as $sport)
+                    <option value={{$sport['title']}}> {{$sport['title']}} </option>
+                @endforeach
+            </select>
+        </div>
         <div class="mb-3">
             <label for="formFileMultiple" class="form-label">date Debut</label>
             <input type="date" class="form-control" required name="dateDebut">

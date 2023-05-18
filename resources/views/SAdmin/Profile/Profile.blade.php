@@ -10,27 +10,24 @@
     </div>
 
     <div class="container-fluid col-12 col-sm-6 mx-auto">
-      <div class="mb-3">
+      <div class="mb-3" style="display: flex; align-items: center; justify-content: space-between">
         <h4> Email Address </h4>
         <h5> {{ Auth::user()->email }} </h5>
       </div>
-      <div class="mb-3">
+      <div class="mb-3" style="display: flex; align-items: center; justify-content: space-between">
         <h4> First Name </h4>
         <h5> {{ Auth::user()->fname }} </h5>
       </div>
-      <div class="mb-3">
+      <div class="mb-3" style="display: flex; align-items: center; justify-content: space-between">
         <h4> Last Name </h4>
         <h5> {{ Auth::user()->lname }} </h5>
       </div>
 
-        <div class="Buttons">
-            <button type="button" class="btn btn-success p-3" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button>
-            <button type="button" class="btn btn-danger p-3" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete</button>
-        </div>
+      <button type="button" class="w-100 btn btn-success p-3" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button>
     </div>
 </div>
 
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  {{-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body p-4">
@@ -53,7 +50,7 @@
           </div>
         </div>
       </div>
-  </div>
+  </div> --}}
 
   <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -63,7 +60,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <form method="POST" action="" enctype="multipart/form-data">
+              <form method="POST" action="profile">
                   @csrf
                   <div class="mb-3">
                     <label for="email" class="form-label"> Email </label>
